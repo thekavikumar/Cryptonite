@@ -8,12 +8,12 @@ import { getDatabase, ref, get, set } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: 'AIzaSyCV45Vf4EIQnSuXhlkeZq-o-N01x_3ybSQ',
-  authDomain: 'cryptonite-eb584.firebaseapp.com',
-  projectId: 'cryptonite-eb584',
-  storageBucket: 'cryptonite-eb584.appspot.com',
-  messagingSenderId: '356542844173',
-  appId: '1:356542844173:web:8d8517ba9639fcccc83444',
+  apiKey: process.env.FIREBASE_API_KEY,
+  authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.FIREBASE_PROJECT_ID,
+  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.FIREBASE_APP_ID,
 };
 
 // Initialize Firebase
