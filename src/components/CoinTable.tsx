@@ -35,41 +35,22 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Coin, useWatchlistStore } from '@/lib/store';
+import { Coin, useCoinStore, useWatchlistStore } from '@/lib/store';
 import CoinRow from './CoinRow';
+import Link from 'next/link';
 
-const coins: Coin[] = [
-  {
-    coin_id: '28470',
-    name: 'Moon Tropica',
-    symbol: 'CAH',
-    price: 36.97171180169754,
-    small:
-      'https://assets.coingecko.com/coins/images/28470/small/MTLOGO.png?1696527464',
-    market_cap: '$99,703,583',
-    total_volume: '$282,142',
-  },
-  // Add more coins as needed
-];
+const getRawPrice = (coin: Coin) => coin.data.price;
 
 export const columns: ColumnDef<Coin>[] = [
   {
     accessorKey: 'name',
-    header: ({ column }) => (
-      <Button
-        variant="ghost"
-        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-      >
-        Coin
-        <ArrowUpDown className="ml-2 h-4 w-4" />
-      </Button>
-    ),
+    header: () => <div className="">Coin</div>,
     cell: ({ row }) => (
       <div className="flex items-center gap-2">
         <img
           src={row.original.small}
           alt={row.original.name}
-          className="h-6 w-6"
+          className="h-6 w-6 rounded-full"
         />
         {row.original.name} ({row.original.symbol})
       </div>
@@ -77,9 +58,18 @@ export const columns: ColumnDef<Coin>[] = [
   },
   {
     accessorKey: 'price',
-    header: () => <div className="text-right">Price</div>,
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="float-right"
+        onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+      >
+        Price
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
     cell: ({ row }) => {
-      const price = row.getValue<number>('price');
+      const price = row.original.data.price;
 
       // Format the price as a dollar amount
       const formatted = new Intl.NumberFormat('en-US', {
@@ -90,6 +80,14 @@ export const columns: ColumnDef<Coin>[] = [
 
       return <div className="text-right font-medium">{formatted}</div>;
     },
+    sortingFn: (a, b) => {
+      const priceA = getRawPrice(a.original);
+      const priceB = getRawPrice(b.original);
+      if (priceA !== priceB) {
+        return priceB - priceA;
+      }
+      return getRawPrice(a.original) - getRawPrice(b.original);
+    },
   },
   {
     accessorKey: 'market_cap',
@@ -97,7 +95,7 @@ export const columns: ColumnDef<Coin>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-right font-medium">
-          {row.getValue('market_cap')}
+          {row.original.data.market_cap}
         </div>
       );
     },
@@ -108,7 +106,7 @@ export const columns: ColumnDef<Coin>[] = [
     cell: ({ row }) => {
       return (
         <div className="text-right font-medium">
-          {row.getValue('total_volume')}
+          {row.original.data.total_volume}
         </div>
       );
     },
@@ -151,6 +149,8 @@ export function DataTableDemo() {
     React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
 
+  const { coins } = useCoinStore();
+
   const table = useReactTable({
     data: coins,
     columns,
@@ -174,7 +174,10 @@ export function DataTableDemo() {
 
   return (
     <div className="w-full max-w-6xl mx-auto">
-      <h1 className="text-2xl font-semibold">Treading Coins</h1>
+      <div className="flex items-center justify-between">
+        <h1 className="text-2xl font-semibold">Treading Coins</h1>
+        <Link href="/trending">View More</Link>
+      </div>
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter names..."
@@ -231,27 +234,16 @@ export function DataTableDemo() {
           </TableHeader>
           <TableBody>
             {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                // <TableRow
-                //   key={row.id}
-                //   data-state={row.getIsSelected() && 'selected'}
-                // >
-                //   {row.getVisibleCells().map((cell) => (
-                //     <TableCell key={cell.id}>
-                //       {flexRender(
-                //         cell.column.columnDef.cell,
-                //         cell.getContext()
-                //       )}
-                //     </TableCell>
-                //   ))}
-                // </TableRow>
-                <CoinRow
-                  row={row}
-                  coin={row.original}
-                  addToWatchlist={addToWatchlist}
-                  key={row.id}
-                />
-              ))
+              table
+                .getRowModel()
+                .rows.map((row) => (
+                  <CoinRow
+                    row={row}
+                    coin={row.original}
+                    addToWatchlist={addToWatchlist}
+                    key={row.id}
+                  />
+                ))
             ) : (
               <TableRow>
                 <TableCell
@@ -266,10 +258,6 @@ export function DataTableDemo() {
         </Table>
       </div>
       <div className="flex items-center justify-end space-x-2 py-4">
-        <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of{' '}
-          {table.getFilteredRowModel().rows.length} row(s) selected.
-        </div>
         <div className="space-x-2">
           <Button
             variant="outline"

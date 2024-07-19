@@ -62,51 +62,51 @@ export function GlobalMarketCapChart() {
     return daysMap[timeRange];
   };
 
-  React.useEffect(() => {
-    const fetchData = async () => {
-      setLoading(true); // Set loading to true before fetching data
-      const [from, to] = getTimeRange();
+  // React.useEffect(() => {
+  //   const fetchData = async () => {
+  //     setLoading(true); // Set loading to true before fetching data
+  //     const [from, to] = getTimeRange();
 
-      try {
-        const requests = cryptoIds.map((id) =>
-          axios.get(
-            `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
-            {
-              params: { vs_currency: 'usd', from, to },
-              headers: {
-                accept: 'application/json',
-                'x-cg-demo-api-key': process.env.API_KEY,
-              },
-            }
-          )
-        );
+  //     try {
+  //       const requests = cryptoIds.map((id) =>
+  //         axios.get(
+  //           `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
+  //           {
+  //             params: { vs_currency: 'usd', from, to },
+  //             headers: {
+  //               accept: 'application/json',
+  //               'x-cg-demo-api-key': process.env.API_KEY,
+  //             },
+  //           }
+  //         )
+  //       );
 
-        const responses = await Promise.all(requests);
-        const formattedData = responses[0].data.market_caps.map(
-          (_: any, index: number) => {
-            return {
-              date: new Date(responses[0].data.market_caps[index][0])
-                .toISOString()
-                .split('T')[0],
-              btc: responses[0].data.market_caps[index][1],
-              eth: responses[1].data.market_caps[index][1],
-            };
-          }
-        );
+  //       const responses = await Promise.all(requests);
+  //       const formattedData = responses[0].data.market_caps.map(
+  //         (_: any, index: number) => {
+  //           return {
+  //             date: new Date(responses[0].data.market_caps[index][0])
+  //               .toISOString()
+  //               .split('T')[0],
+  //             btc: responses[0].data.market_caps[index][1],
+  //             eth: responses[1].data.market_caps[index][1],
+  //           };
+  //         }
+  //       );
 
-        setData(formattedData);
-        setLoading(false); // Set loading to false after fetching data
-      } catch (error) {
-        console.error(error);
-        setLoading(false); // Ensure loading is set to false on error too
-      }
-    };
+  //       setData(formattedData);
+  //       setLoading(false); // Set loading to false after fetching data
+  //     } catch (error) {
+  //       console.error(error);
+  //       setLoading(false); // Ensure loading is set to false on error too
+  //     }
+  //   };
 
-    fetchData();
-  }, [timeRange]);
+  //   fetchData();
+  // }, [timeRange]);
 
   return (
-    <Card className="bg-transparent max-w-3xl">
+    <Card className="bg-transparent h-[408px] max-w-3xl">
       <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
         <div className="grid flex-1 gap-1 text-center sm:text-left">
           <CardTitle>Global Market Cap</CardTitle>

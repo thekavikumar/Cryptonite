@@ -59,6 +59,11 @@ const config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       keyframes: {
+        scroll: {
+          to: {
+            transform: 'translate(calc(-50% - 0.5rem))',
+          },
+        },
         'accordion-down': {
           from: { height: '0' },
           to: { height: 'var(--radix-accordion-content-height)' },
@@ -109,6 +114,8 @@ const config = {
         third: 'moveInCircle 40s linear infinite',
         fourth: 'moveHorizontal 40s ease infinite',
         fifth: 'moveInCircle 20s ease infinite',
+        scroll:
+          'scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite',
       },
     },
   },

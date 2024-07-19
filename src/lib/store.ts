@@ -4,10 +4,12 @@ export interface Coin {
   coin_id: string;
   name: string;
   symbol: string;
-  price: number;
+  data: {
+    price: number;
+    market_cap: string;
+    total_volume: string;
+  };
   small: string;
-  market_cap: string;
-  total_volume: string;
 }
 
 interface WatchlistStore {
@@ -22,18 +24,7 @@ interface CoinStore {
 }
 
 const useCoinStore = create<CoinStore>((set) => ({
-  coins: [
-    {
-      coin_id: '28470',
-      name: 'Moon Tropica',
-      symbol: 'CAH',
-      price: 36.97171180169754,
-      small:
-        'https://assets.coingecko.com/coins/images/28470/small/MTLOGO.png?1696527464',
-      market_cap: '$99,703,583',
-      total_volume: '$282,142',
-    },
-  ],
+  coins: [],
   setCoins: (coins) => set({ coins }),
 }));
 

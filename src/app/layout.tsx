@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+      <body className={`h-screen ${inter.className}`}>
         <ClerkProvider>
           <DnDWrapper>
             <ThemeProvider
@@ -31,7 +31,7 @@ export default function RootLayout({
               disableTransitionOnChange
             >
               <BackgroundGradientAnimation>
-                <div className="absolute z-50">
+                <div className="absolute z-50 overflow-auto h-screen">
                   <Navbar />
                   {children}
                 </div>
