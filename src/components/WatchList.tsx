@@ -76,10 +76,8 @@ export const columns: ColumnDef<Coin>[] = [
 
 const Watchlist: React.FC = () => {
   const { watchlist, addToWatchlist } = useWatchlistStore();
-  const recentWatchlist =
-    watchlist.length > 5 ? watchlist.slice(0, 5) : watchlist;
   const table = useReactTable({
-    data: recentWatchlist,
+    data: watchlist,
     columns,
     getCoreRowModel: getCoreRowModel(),
   });
@@ -98,7 +96,7 @@ const Watchlist: React.FC = () => {
         <h1 className="text-lg font-semibold">Watch List</h1>
         <Link href="/watchlist">View More</Link>
       </div>
-      <div className="rounded-md border h-full">
+      <div className="rounded-md border h-full overflow-y-scroll  no-scrollbar">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
