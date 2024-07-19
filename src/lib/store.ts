@@ -33,7 +33,7 @@ const useWatchlistStore = create<WatchlistStore>((set) => ({
   setWatchlist: (watchlist) => set({ watchlist }),
   addToWatchlist: (coin) =>
     set((state) => ({
-      watchlist: [...state.watchlist, coin],
+      watchlist: [coin, ...state.watchlist],
     })),
 }));
 
