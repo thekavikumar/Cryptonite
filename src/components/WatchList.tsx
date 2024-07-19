@@ -44,7 +44,7 @@ export const columns: ColumnDef<Coin>[] = [
       const formatted = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-        minimumFractionDigits: 5,
+        minimumFractionDigits: 2,
       }).format(price);
 
       return <div className="text-right font-medium">{formatted}</div>;
