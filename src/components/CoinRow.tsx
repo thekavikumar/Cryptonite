@@ -31,7 +31,7 @@ const CoinRow: React.FC<{
     <TableRow
       key={row?.id}
       onClick={() => {
-        navigate.push(`/trending/${row.original.coin_id}`);
+        navigate.push(`/trending/${row.original.id}`);
       }}
       ref={drag as unknown as React.RefObject<HTMLTableRowElement>}
       style={{ opacity: isDragging ? 0.5 : 1 }}

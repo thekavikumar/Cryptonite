@@ -96,7 +96,7 @@ const Watchlist: React.FC = () => {
         <h1 className="text-lg font-semibold">Watch List</h1>
         <Link href="/watchlist">View More</Link>
       </div>
-      <div className="rounded-md border h-full overflow-y-scroll  no-scrollbar">
+      <div className="rounded-md border h-full overflow-y-scroll no-scrollbar">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

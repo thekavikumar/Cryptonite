@@ -7,7 +7,7 @@ const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    'x-cg-demo-api-key': 'CG-nu3BTKyqCw7tsNbKLaKyaHno',
+    'x-cg-demo-api-key': process.env.API_KEY || '',
   },
 };
 
