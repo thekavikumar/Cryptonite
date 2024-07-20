@@ -105,10 +105,14 @@ const Page = async ({ params }: { params: { coin_id: string } }) => {
         </div>
         <div className="w-full flex flex-col gap-4">
           <ProductChart coin_id={params.coin_id} />
-          <div className="flex flex-col gap-3 mt-4">
-            <h1 className="text-xl font-semibold">About {coinData.name}</h1>
-            <p>{truncateDescription(coinData.description.en, 3)}</p>
-          </div>
+          {coinData.description.en ? (
+            <div className="flex flex-col gap-3 mt-4">
+              <h1 className="text-xl font-semibold">About {coinData.name}</h1>
+              <p>{truncateDescription(coinData.description.en, 3)}</p>
+            </div>
+          ) : (
+            <div className=""></div>
+          )}
         </div>
       </div>
     </div>
