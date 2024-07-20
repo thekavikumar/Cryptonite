@@ -145,15 +145,15 @@ export const InfiniteMovingCards = ({
                   aria-hidden="true"
                   className="user-select-none -z-1 pointer-events-none absolute -left-0.5 -top-0.5 h-[calc(100%_+_4px)] w-[calc(100%_+_4px)]"
                 ></div>
-                <span className="relative z-20 text-sm leading-[1.6] text-gray-100 font-normal">
+                <span className="relative z-20 text-sm leading-[1.6] text-primary font-normal">
                   {item.name} ({item.coin})
                 </span>
                 <div className="relative z-20 mt-6 flex flex-row items-center">
                   <span className="flex flex-col gap-1">
-                    <span className="text-sm leading-[1.6] text-gray-400 font-normal">
+                    <span className="text-sm leading-[1.6] text-primary font-normal">
                       {item.symbol}
                     </span>
-                    <span className="text-sm leading-[1.6] text-gray-400 font-normal">
+                    <span className="text-sm leading-[1.6] text-primary font-normal">
                       {item.total_current_value_usd} USD
                     </span>
                   </span>

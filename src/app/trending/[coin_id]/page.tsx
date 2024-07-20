@@ -1,4 +1,5 @@
 'use client';
+import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import React, { useEffect, useState } from 'react';
 
 const options = {
@@ -21,15 +22,9 @@ const Page = ({ params }: { params: { coin_id: string } }) => {
         options
       );
       if (!response.ok) {
-        if (response.status === 429 && retryCount < 3) {
-          // Retry after a delay if rate limited (429 status)
-          setTimeout(
-            () => fetchCoinData(retryCount + 1),
-            Math.pow(2, retryCount) * 1000
-          );
-          return;
+        if (response.status === 429) {
+          throw new Error('To Many Requests');
         }
-        throw new Error('Failed to fetch data');
       }
       const data = await response.json();
       setCoinData(data);
@@ -55,12 +50,29 @@ const Page = ({ params }: { params: { coin_id: string } }) => {
     return <div>Error: {error}</div>;
   }
 
+  //   <h1>{coinData.name}</h1>
+  //           <p>Symbol: {coinData.symbol}</p>
+  //           <p>Current Price: {coinData.market_data.current_price.usd} USD</p>
+
   return (
-    <div>
-      <h1>{coinData.name}</h1>
-      <p>Symbol: {coinData.symbol}</p>
-      <p>Current Price: {coinData.market_data.current_price.usd} USD</p>
-      {/* Add more fields as needed */}
+    <div className="max-w-7xl mt-6 mx-auto">
+      <div className="w-full flex justify-between flex-col md:flex-row">
+        <div className="w-[45%] flex flex-col">
+          <Card className="w-full">
+            <CardHeader>
+              <div className="text-lg text-primary">
+                <img src={coinData.image?.thumb} />
+                {coinData.name} {coinData.symbol}
+                
+              </div>
+              <CardTitle className="font-bold text-3xl">
+                $ {coinData.market_data.current_price.usd}
+              </CardTitle>
+            </CardHeader>
+          </Card>
+        </div>
+        <div className="w-full"></div>
+      </div>
     </div>
   );
 };
