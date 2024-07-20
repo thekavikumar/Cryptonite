@@ -35,7 +35,7 @@ const DnDWrapper = ({ children }: { children: React.ReactNode }) => {
 
     fetchCoins(); // Fetch data immediately on component mount
 
-    const intervalId = setInterval(fetchCoins, 60000); // Fetch data every minute
+    const intervalId = setInterval(fetchCoins, 30000); // Fetch data 30 sec
 
     return () => clearInterval(intervalId); // Cleanup on component unmount
   }, [setCoins]);

@@ -92,10 +92,7 @@ const Watchlist: React.FC = () => {
       className="max-w-md h-[373px] md:mt-[-32px] mt-5 w-full"
       ref={drop as unknown as React.RefObject<HTMLDivElement>}
     >
-      <div className="flex items-center justify-between mb-2">
-        <h1 className="text-lg font-semibold">Watch List</h1>
-        <Link href="/watchlist">View More</Link>
-      </div>
+      <h1 className="text-lg font-semibold">Watch List</h1>
       <div className="rounded-md border h-full overflow-y-scroll no-scrollbar">
         <Table>
           <TableHeader>
