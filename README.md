@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Cryptonite
 
-## Getting Started
+**Cryptonite** is a web application designed to track live cryptocurrency prices and view historical data. It leverages the CoinGecko API to provide up-to-date and historical information on various cryptocurrencies.
 
-First, run the development server:
+## Features
+
+- **Live Cryptocurrency Tracking**: Monitor real-time price updates for a wide range of cryptocurrencies.
+- **Historical Data**: Access historical price data for selected cryptocurrencies over specified time ranges.
+- **Search Functionality**: Quickly find cryptocurrencies and view their current and historical data.
+
+## API Endpoints
+
+The application uses the following CoinGecko API endpoints:
+
+- **Get Coin Data**:
+
+  - Endpoint: `https://api.coingecko.com/api/v3/coins/{id}`
+  - Description: Fetches detailed information about a specific cryptocurrency.
+
+- **Historical Market Data**:
+
+  - Endpoint: `https://docs.coingecko.com/v3.0.1/reference/coins-id-market-chart-range`
+  - Description: Retrieves historical market data for a specific cryptocurrency over a defined range.
+
+- **Search for Coins**:
+
+  - Endpoint: `https://api.coingecko.com/api/v3/search`
+  - Description: Provides search functionality to find cryptocurrencies based on user queries.
+
+- **Market Chart Data**:
+  - Endpoint: `https://api.coingecko.com/api/v3/coins/{id}/market_chart/range`
+  - Description: Obtains market chart data for a cryptocurrency over a specified date range.
+
+## Installation
+
+To get started with Cryptonite, clone the repository and install the necessary dependencies:
+
+```bash
+git clone https://github.com/thekavikumar/Cryptonite.git
+cd cryptonite
+npm install
+```
+
+## Usage
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and navigate to `http://localhost:3000` to access the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Contributing
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+We welcome contributions to Cryptonite! If you have suggestions, bug reports, or want to contribute code, please open an issue or submit a pull request.
 
-## Learn More
+## Acknowledgments
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **CoinGecko API**: For providing comprehensive cryptocurrency data.
