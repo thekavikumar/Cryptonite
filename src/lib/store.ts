@@ -23,6 +23,27 @@ interface CoinStore {
   setCoins: (coins: Coin[]) => void;
 }
 
+export type RecentCoin = {
+  id: string;
+  name: string;
+};
+
+type RecentStoreState = {
+  recentSearches: RecentCoin[];
+  addSearch: (coin: RecentCoin) => void;
+};
+
+export const useRecentSearch = create<RecentStoreState>((set) => ({
+  recentSearches: [],
+  addSearch: (coin) =>
+    set((state) => ({
+      recentSearches: [
+        coin,
+        ...state.recentSearches.filter((c) => c.id !== coin.id),
+      ].slice(0, 5),
+    })),
+}));
+
 const useCoinStore = create<CoinStore>((set) => ({
   coins: [],
   setCoins: (coins) => set({ coins }),
