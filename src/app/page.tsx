@@ -6,8 +6,8 @@ import WatchList from '@/components/WatchList';
 export default async function Home() {
   return (
     <main className="">
-      <div className="mb-4">
-        <div className="flex m-4 mr-5 ml-5 flex-col md:flex-row items-center justify-between max-w-6xl gap-3 lg:mx-auto ">
+      <div className="mb-4 p-3 md:p-0">
+        <div className="flex m-4 md:mr-5 md:ml-5 flex-col md:flex-row items-center justify-between max-w-6xl gap-3 lg:mx-auto ">
           <GlobalMarketCapChart />
           <WatchList />
         </div>
