@@ -5,10 +5,15 @@
 ## Features
 
 - **Live Cryptocurrency Tracking**: Monitor real-time price updates for a wide range of cryptocurrencies.
+- **Public Companies Holding**: View public companies holding cryptocurrencies.
 - **Historical Data**: Access historical price data for selected cryptocurrencies over specified time ranges.
 - **Search Functionality**: Quickly find cryptocurrencies and view their current and historical data.
+
+# Extra Features
+
+- **Search Bar**: Search for cryptocurrencies with suggestions and recent searches.
 - **Drag-and-Drop Watchlist**: Add cryptocurrencies to a watchlist using a drag-and-drop interface.
-- **Next.js Server Components**: Utilizes Next.js server components for improved performance and server-side rendering.
+- **Server Side Rendering**: Utilizes Next.js server components for improved performance and server-side rendering.
 
 ## API Endpoints
 

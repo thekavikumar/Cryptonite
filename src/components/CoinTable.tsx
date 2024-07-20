@@ -181,7 +181,7 @@ export function DataTableDemo({ page }: { page: string }) {
       {page != 'trending' ? (
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-semibold">Treading Coins</h1>
-          <Link href="/trending">View More</Link>
+          <Link href="/trending">Explore More</Link>
         </div>
       ) : (
         <div className="text-center">
