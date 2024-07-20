@@ -1,5 +1,11 @@
 import { ProductChart } from '@/components/ProductChart';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card';
 import Link from 'next/link';
 import React from 'react';
 
@@ -84,6 +90,17 @@ const Page = async ({ params }: { params: { coin_id: string } }) => {
                 value={coinData.links?.repos_url?.github[0]}
               />
             </CardContent>
+            <CardFooter className="flex flex-col gap-3">
+              <h1>How did you feel about {coinData.name}?</h1>
+              <div className="flex items-center gap-4">
+                <div className="rounded-md bg-primary-foreground p-2 text-primary border hover:bg-secondary cursor-pointer">
+                  👍 {coinData.sentiment_votes_up_percentage}%
+                </div>
+                <div className="rounded-md bg-primary-foreground p-2 text-primary border hover:bg-secondary cursor-pointer">
+                  👎 {coinData.sentiment_votes_down_percentage}%
+                </div>
+              </div>
+            </CardFooter>
           </Card>
         </div>
         <div className="w-full flex flex-col gap-4">
