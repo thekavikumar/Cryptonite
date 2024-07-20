@@ -89,10 +89,10 @@ const Watchlist: React.FC = () => {
   // ref={drop as unknown as React.RefObject<HTMLDivElement>}
   return (
     <div
-      className="max-w-md h-[373px] md:mt-[-24px] mt-5 w-full"
+      className="max-w-md h-[373px] md:mt-[-32px] mt-5 w-full"
       ref={drop as unknown as React.RefObject<HTMLDivElement>}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between mb-2">
         <h1 className="text-lg font-semibold">Watch List</h1>
         <Link href="/watchlist">View More</Link>
       </div>

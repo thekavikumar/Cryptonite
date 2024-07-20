@@ -22,23 +22,23 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`h-screen ${inter.className}`}>
-        <ClerkProvider>
-          <DnDWrapper>
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="system"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <BackgroundGradientAnimation>
-                <div className="absolute z-50 overflow-auto h-screen">
-                  <Navbar />
-                  {children}
-                </div>
-              </BackgroundGradientAnimation>
-            </ThemeProvider>
-          </DnDWrapper>
-        </ClerkProvider>
+        {/* <ClerkProvider> */}
+        <DnDWrapper>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <BackgroundGradientAnimation>
+              <div className="absolute z-50 overflow-auto h-screen">
+                <Navbar />
+                {children}
+              </div>
+            </BackgroundGradientAnimation>
+          </ThemeProvider>
+        </DnDWrapper>
+        {/* </ClerkProvider> */}
       </body>
     </html>
   );

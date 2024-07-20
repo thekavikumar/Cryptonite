@@ -2,7 +2,7 @@ import React from 'react';
 import { ModeToggle } from './ModeToggle';
 import { Button } from './ui/button';
 import { Search } from 'lucide-react';
-import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
+// import { SignedIn, SignedOut, SignInButton, UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 
 const Navbar = async () => {
@@ -20,14 +20,14 @@ const Navbar = async () => {
           </Button>
           <ModeToggle />
 
-          <SignedOut>
+          {/* <SignedOut>
             <Button variant={'outline'}>
               <SignInButton />
             </Button>
           </SignedOut>
           <SignedIn>
             <UserButton />
-          </SignedIn>
+          </SignedIn> */}
         </div>
       </div>
     </div>
