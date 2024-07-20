@@ -7,6 +7,8 @@
 - **Live Cryptocurrency Tracking**: Monitor real-time price updates for a wide range of cryptocurrencies.
 - **Historical Data**: Access historical price data for selected cryptocurrencies over specified time ranges.
 - **Search Functionality**: Quickly find cryptocurrencies and view their current and historical data.
+- **Drag-and-Drop Watchlist**: Add cryptocurrencies to a watchlist using a drag-and-drop interface.
+- **Next.js Server Components**: Utilizes Next.js server components for improved performance and server-side rendering.
 
 ## API Endpoints
 
@@ -16,11 +18,6 @@ The application uses the following CoinGecko API endpoints:
 
   - Endpoint: `https://api.coingecko.com/api/v3/coins/{id}`
   - Description: Fetches detailed information about a specific cryptocurrency.
-
-- **Historical Market Data**:
-
-  - Endpoint: `https://docs.coingecko.com/v3.0.1/reference/coins-id-market-chart-range`
-  - Description: Retrieves historical market data for a specific cryptocurrency over a defined range.
 
 - **Search for Coins**:
 
@@ -35,9 +32,11 @@ The application uses the following CoinGecko API endpoints:
 
 To get started with Cryptonite, clone the repository and install the necessary dependencies:
 
-```bash
+```bash copy
 git clone https://github.com/thekavikumar/Cryptonite.git
-cd cryptonite
+
+cd Cryptonite
+
 npm install
 ```
 
@@ -50,11 +49,3 @@ npm run dev
 ```
 
 Open your browser and navigate to `http://localhost:3000` to access the application.
-
-## Contributing
-
-We welcome contributions to Cryptonite! If you have suggestions, bug reports, or want to contribute code, please open an issue or submit a pull request.
-
-## Acknowledgments
-
-- **CoinGecko API**: For providing comprehensive cryptocurrency data.
