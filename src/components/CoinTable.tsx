@@ -140,7 +140,7 @@ export const columns: ColumnDef<Coin>[] = [
   },
 ];
 
-export function DataTableDemo() {
+export function DataTableDemo({ page }: { page: string }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -173,11 +173,21 @@ export function DataTableDemo() {
   const { addToWatchlist } = useWatchlistStore();
 
   return (
-    <div className="w-full max-w-6xl mx-auto">
-      <div className="flex items-center justify-between">
-        <h1 className="text-2xl font-semibold">Treading Coins</h1>
-        <Link href="/trending">View More</Link>
-      </div>
+    <div
+      className={`w-full ${
+        page == 'trending' ? 'max-w-3xl' : 'max-w-6xl'
+      } mx-auto`}
+    >
+      {page != 'trending' ? (
+        <div className="flex items-center justify-between">
+          <h1 className="text-2xl font-semibold">Treading Coins</h1>
+          <Link href="/trending">View More</Link>
+        </div>
+      ) : (
+        <div className="text-center">
+          <h1 className="text-2xl font-semibold">Treading Coins</h1>
+        </div>
+      )}
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter names..."

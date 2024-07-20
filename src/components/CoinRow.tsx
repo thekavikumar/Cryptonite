@@ -3,6 +3,8 @@ import { Coin } from '@/lib/store';
 import { useDrag } from 'react-dnd';
 import { TableCell, TableRow } from './ui/table';
 import { flexRender } from '@tanstack/react-table';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const CoinRow: React.FC<{
   coin: Coin;
@@ -23,12 +25,17 @@ const CoinRow: React.FC<{
     }),
   }));
 
+  const navigate = useRouter();
+
   return (
     <TableRow
       key={row?.id}
+      onClick={() => {
+        navigate.push(`/trending/${row.original.coin_id}`);
+      }}
       ref={drag as unknown as React.RefObject<HTMLTableRowElement>}
       style={{ opacity: isDragging ? 0.5 : 1 }}
-      className="w-full max-w-6xl"
+      className="w-full cursor-pointer"
       data-state={row?.getIsSelected() && 'selected'}
     >
       {row?.getVisibleCells().map((cell: any) => (

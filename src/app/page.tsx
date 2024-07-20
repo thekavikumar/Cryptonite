@@ -15,16 +15,10 @@ export default async function Home() {
           <h1 className="text-center text-2xl font-semibold">
             Public Market Holdings
           </h1>
-          <InfiniteMovingCards
-            items={[
-              { quote: 'kavi', name: 'kavi', title: 'kavi' },
-              { quote: 'kavi', name: 'kavi', title: 'kavi' },
-              { quote: 'kavi', name: 'kavi', title: 'kavi' },
-            ]}
-          />
+          <InfiniteMovingCards />
         </div>
         <div className="">
-          <DataTableDemo />
+          <DataTableDemo page="home" />
         </div>
       </div>
     </main>

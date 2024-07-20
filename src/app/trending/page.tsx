@@ -1,7 +1,16 @@
+import { DataTableDemo } from '@/components/CoinTable';
+import Watchlist from '@/components/WatchList';
 import React from 'react';
 
 const Page = () => {
-  return <div>Page</div>;
+  return (
+    <div className="flex md:flex-row flex-col p-6 justify-between max-w-7xl mx-auto gap-6">
+      <DataTableDemo page="trending" />
+      <div className="md:mt-16 mt-4">
+        <Watchlist />
+      </div>
+    </div>
+  );
 };
 
 export default Page;
