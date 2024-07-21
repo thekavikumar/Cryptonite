@@ -3,7 +3,6 @@ import { Coin } from '@/lib/store';
 import { useDrag } from 'react-dnd';
 import { TableCell, TableRow } from './ui/table';
 import { flexRender } from '@tanstack/react-table';
-import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 
 const CoinRow: React.FC<{

@@ -27,7 +27,7 @@ import {
 
 const fetchCoinData = async (coin_id: string, days: string) => {
   const response = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart?vs_currency=usd&days=${days}`
+    `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart?vs_currency=usd&days=${days}`
   );
   if (!response.ok) {
     throw new Error('Failed to fetch coin data');

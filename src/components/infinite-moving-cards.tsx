@@ -19,7 +19,7 @@ const ethereumImg =
 
 const fetchCompanyHoldings = async (coin: string) => {
   const response = await fetch(
-    `https://api.coingecko.com/api/v3/companies/public_treasury/${coin}`,
+    `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/companies/public_treasury/${coin}`,
     options
   );
   if (!response.ok) {

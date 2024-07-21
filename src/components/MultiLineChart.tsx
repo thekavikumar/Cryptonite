@@ -72,7 +72,7 @@ export function GlobalMarketCapChart() {
       try {
         const requests = cryptoIds.map((id) =>
           axios.get(
-            `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
+            `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
             {
               params: { vs_currency: 'usd', from, to },
               headers: {
