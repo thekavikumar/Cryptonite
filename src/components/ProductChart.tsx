@@ -30,6 +30,9 @@ const fetchCoinData = async (coin_id: string, days: string) => {
     `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart?vs_currency=usd&days=${days}`
   );
   if (!response.ok) {
+    if (response.status === 429) {
+      throw new Error('Too Many Requests');
+    }
     throw new Error('Failed to fetch coin data');
   }
   const data = await response.json();
@@ -57,10 +60,12 @@ export function ProductChart({ coin_id }: { coin_id: string }) {
   const [timeRange, setTimeRange] = React.useState('90');
   const [chartData, setChartData] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
   React.useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
+      setError(null);
       try {
         const data = await fetchCoinData(coin_id, timeRange);
         const transformedData = data.prices.map(
@@ -73,8 +78,10 @@ export function ProductChart({ coin_id }: { coin_id: string }) {
           })
         );
         setChartData(transformedData);
-      } catch (error) {
-        console.error('Failed to fetch chart data', error);
+      } catch (error: any) {
+        if (error.response) {
+          setError('Too many requests. Please try again later.');
+        }
       } finally {
         setLoading(false);
       }
@@ -85,6 +92,22 @@ export function ProductChart({ coin_id }: { coin_id: string }) {
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return (
+      <Card className="bg-transparent">
+        <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+          <div className="grid flex-1 gap-1 text-center sm:text-left">
+            <CardTitle>{`Price Chart for ${coin_id}`}</CardTitle>
+            <CardDescription>{error}</CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
+          {/* Optionally, you can add additional details or a retry button here */}
+        </CardContent>
+      </Card>
+    );
   }
 
   // Format X-axis labels based on the selected time range
