@@ -24,6 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import { Loader2 } from 'lucide-react';
 
 const fetchCoinData = async (coin_id: string, days: string) => {
   const response = await fetch(
@@ -79,8 +80,10 @@ export function ProductChart({ coin_id }: { coin_id: string }) {
         );
         setChartData(transformedData);
       } catch (error: any) {
-        if (error.response) {
+        if (error.message === 'Too Many Requests') {
           setError('Too many requests. Please try again later.');
+        } else {
+          setError('Failed to fetch data. Please try again later.');
         }
       } finally {
         setLoading(false);
@@ -91,7 +94,22 @@ export function ProductChart({ coin_id }: { coin_id: string }) {
   }, [coin_id, timeRange]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <Card className="bg-transparent">
+        <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
+          <div className="grid flex-1 gap-1 text-center sm:text-left">
+            <CardTitle>{`Price Chart for ${coin_id}`}</CardTitle>
+            <CardDescription>
+              <div className="flex flex-col text-center justify-center items-center ">
+                <Loader2 size={20} className="animate-spin" />
+                <p>Chart is getting loaded...</p>
+              </div>
+            </CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6" />
+      </Card>
+    );
   }
 
   if (error) {
@@ -100,12 +118,10 @@ export function ProductChart({ coin_id }: { coin_id: string }) {
         <CardHeader className="flex items-center gap-2 space-y-0 border-b py-5 sm:flex-row">
           <div className="grid flex-1 gap-1 text-center sm:text-left">
             <CardTitle>{`Price Chart for ${coin_id}`}</CardTitle>
-            <CardDescription>{error}</CardDescription>
+            <CardDescription className="text-red-500">{error}</CardDescription>
           </div>
         </CardHeader>
-        <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
-          {/* Optionally, you can add additional details or a retry button here */}
-        </CardContent>
+        <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6" />
       </Card>
     );
   }
