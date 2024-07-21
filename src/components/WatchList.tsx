@@ -89,7 +89,7 @@ const Watchlist: React.FC = () => {
   // ref={drop as unknown as React.RefObject<HTMLDivElement>}
   return (
     <div
-      className="max-w-md h-[373px] md:mt-[-32px] mt-5 w-full"
+      className="max-w-[320px] lg:max-w-md h-[373px] md:mt-[-32px] mt-5 w-full"
       ref={drop as unknown as React.RefObject<HTMLDivElement>}
     >
       <h1 className="text-lg font-semibold">Watch List</h1>

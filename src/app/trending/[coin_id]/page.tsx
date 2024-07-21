@@ -49,9 +49,9 @@ const truncateDescription = (description: string, sentenceCount: number) => {
 const Page = async ({ params }: { params: { coin_id: string } }) => {
   const coinData = await fetchCoinData(params.coin_id);
   return (
-    <div className="max-w-7xl mt-6 mx-auto">
+    <div className="lg:max-w-7xl max-w-[320px] mt-6 mx-auto mb-4">
       <div className="w-full gap-4 flex justify-between flex-col md:flex-row">
-        <div className="w-[45%] flex flex-col">
+        <div className="lg:w-[45%] flex flex-col">
           <Card className="w-full bg-transparent">
             <CardHeader>
               <div className="text-2xl flex gap-3 items-center mb-2 text-primary">

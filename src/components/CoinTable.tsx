@@ -91,10 +91,10 @@ export const columns: ColumnDef<Coin>[] = [
   },
   {
     accessorKey: 'market_cap',
-    header: () => <div className="text-right">Market Cap</div>,
+    header: () => <div className="text-right hidden lg:block">Market Cap</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-right font-medium">
+        <div className="text-right font-medium hidden lg:block">
           {row.original.data.market_cap}
         </div>
       );
@@ -102,10 +102,12 @@ export const columns: ColumnDef<Coin>[] = [
   },
   {
     accessorKey: 'total_volume',
-    header: () => <div className="text-right">Total Volume</div>,
+    header: () => (
+      <div className="text-right hidden lg:block">Total Volume</div>
+    ),
     cell: ({ row }) => {
       return (
-        <div className="text-right font-medium">
+        <div className="text-right font-medium hidden lg:block">
           {row.original.data.total_volume}
         </div>
       );
@@ -119,7 +121,7 @@ export const columns: ColumnDef<Coin>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
+            <Button variant="ghost" className="h-8 w-8 p-0 hidden lg:block">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
@@ -174,8 +176,8 @@ export function DataTableDemo({ page }: { page: string }) {
 
   return (
     <div
-      className={`w-full ${
-        page == 'trending' ? 'max-w-3xl' : 'max-w-6xl'
+      className={`w-full max-w-[340px] ${
+        page == 'trending' ? 'lg:max-w-3xl' : 'lg:max-w-6xl'
       } mx-auto`}
     >
       {page != 'trending' ? (
@@ -188,7 +190,7 @@ export function DataTableDemo({ page }: { page: string }) {
           <h1 className="text-2xl font-semibold">Treading Coins</h1>
         </div>
       )}
-      <div className="flex items-center py-4">
+      <div className="flex items-center gap-2 lg:gap-0 py-4">
         <Input
           placeholder="Filter names..."
           value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}

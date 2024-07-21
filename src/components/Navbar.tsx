@@ -17,7 +17,7 @@ const Navbar = () => {
     <div className="border-b w-screen shadow-md">
       <div className="flex items-center max-w-6xl mx-auto p-5 justify-between w-screen">
         <Link href={'/'}>
-          <h1 className="text-3xl font-bold">
+          <h1 className="md:text-3xl text-2xl font-bold">
             Crypto<span className="text-pink-500">nite</span>
           </h1>
         </Link>
