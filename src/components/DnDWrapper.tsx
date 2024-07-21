@@ -19,7 +19,7 @@ const DnDWrapper = ({ children }: { children: React.ReactNode }) => {
 
       try {
         const response = await fetch(
-          'https://api.coingecko.com/api/v3/search/trending',
+          'https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/search/trending',
           options
         );
         const data = await response.json();
