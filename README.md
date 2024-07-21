@@ -1,10 +1,21 @@
+![Cryptonite](<./src/assets/Safari%20(Big%20Sur)%20-%20Dark.png>)
+
 # Cryptonite
 
 **Cryptonite** is a web application designed to track live cryptocurrency prices and view historical data. It leverages the CoinGecko API to provide up-to-date and historical information on various cryptocurrencies.
 
+<div align="center">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white" alt="Next.js" style="border-radius:5px"/>
+  <img src="https://img.shields.io/badge/CoinGecko%20API-34C759?style=for-the-badge&logo=cryptocurrency&logoColor=white" alt="CoinGecko API" style="border-radius:5px"/>
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" style="border-radius:5px"/>
+  <img src="https://img.shields.io/badge/Axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white" alt="Axios" style="border-radius:5px"/>
+  <img src="https://img.shields.io/badge/Tailwind%20CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" style="border-radius:5px"/>
+  <img src="https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white" alt="Vercel" style="border-radius:5px"/>
+</div>
+
 ## Features
 
-- **Live Cryptocurrency Tracking**: Monitor real-time price updates for a wide range of cryptocurrencies.
+- **Live Cryptocurrency Tracking**: Monitor real-time price updates for a wide range of cryptocurrencies. Every 30 sec the data will be updated to avoid rate limiting.
 - **Public Companies Holding**: View public companies holding cryptocurrencies.
 - **Historical Data**: Access historical price data for selected cryptocurrencies over specified time ranges.
 - **Search Functionality**: Quickly find cryptocurrencies and view their current and historical data.
@@ -14,6 +25,7 @@
 - **Search Bar**: Search for cryptocurrencies with suggestions and recent searches.
 - **Drag-and-Drop Watchlist**: Add cryptocurrencies to a watchlist using a drag-and-drop interface.
 - **Server Side Rendering**: Utilizes Next.js server components for improved performance and server-side rendering.
+- **Dark Mode**: Toggle between light and dark themes for better readability.
 
 ## API Endpoints
 
@@ -30,6 +42,7 @@ The application uses the following CoinGecko API endpoints:
   - **Description**: Provides search functionality to find cryptocurrencies based on user queries.
 
 - **Market Chart Data**:
+
   - **Endpoint**: `https://api.coingecko.com/api/v3/coins/{id}/market_chart/range`
   - **Description**: Obtains market chart data for a cryptocurrency over a specified date range.
 
@@ -37,8 +50,15 @@ The application uses the following CoinGecko API endpoints:
 
 To get started with Cryptonite, clone the repository and install the necessary dependencies:
 
+1. Clone the repository:
+
 ```bash
 git clone https://github.com/thekavikumar/Cryptonite.git
+```
+
+2. Install the dependencies:
+
+```bash
 cd Cryptonite
 npm install
 ```
@@ -100,3 +120,7 @@ If you prefer to use Docker Compose, you can use the provided `docker-compose.ym
 2. **Access the Application**
 
    Open your browser and navigate to `http://localhost:3000` to access the Cryptonite application.
+
+## Deployment
+
+The application is deployed on Vercel and can be accessed [here](https://cryptonite-alpha.vercel.app/).
