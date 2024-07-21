@@ -17,7 +17,6 @@ import {
   TableRow,
 } from './ui/table';
 import CoinRow from './CoinRow';
-import Link from 'next/link';
 
 export const columns: ColumnDef<Coin>[] = [
   {

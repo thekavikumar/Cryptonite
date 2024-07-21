@@ -9,14 +9,6 @@ import {
 import Link from 'next/link';
 import React from 'react';
 
-const options = {
-  method: 'GET',
-  headers: {
-    accept: 'application/json',
-    'x-cg-demo-api-key': process.env.API_KEY || '',
-  },
-};
-
 const fetchCoinData = async (coin_id: string) => {
   const options = {
     method: 'GET',

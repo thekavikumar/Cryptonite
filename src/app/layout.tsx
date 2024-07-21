@@ -4,7 +4,6 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { BackgroundGradientAnimation } from '@/components/background-gradient-animation';
 import Navbar from '@/components/Navbar';
-import { ClerkProvider } from '@clerk/nextjs';
 import DnDWrapper from '@/components/DnDWrapper';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -22,7 +21,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`h-screen ${inter.className}`}>
-        {/* <ClerkProvider> */}
         <DnDWrapper>
           <ThemeProvider
             attribute="class"
@@ -38,7 +36,6 @@ export default function RootLayout({
             </BackgroundGradientAnimation>
           </ThemeProvider>
         </DnDWrapper>
-        {/* </ClerkProvider> */}
       </body>
     </html>
   );

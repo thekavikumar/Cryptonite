@@ -3,14 +3,11 @@ import { cn } from '@/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 
 export const BackgroundGradientAnimation = ({
-  // gradientBackgroundStart = 'rgb(108, 0, 162)',
-  // gradientBackgroundEnd = 'rgb(0, 17, 82)',
   firstColor = '18, 113, 255',
   secondColor = '221, 74, 255',
   thirdColor = '100, 220, 255',
   fourthColor = '200, 50, 50',
   fifthColor = '180, 180, 50',
-  pointerColor = '140, 100, 255',
   size = '40%',
   blendingValue = 'hard-light',
   children,
@@ -35,8 +32,6 @@ export const BackgroundGradientAnimation = ({
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
 
-  const [curX, setCurX] = useState(0);
-  const [curY, setCurY] = useState(0);
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
   useEffect(() => {
@@ -49,21 +44,6 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty('--size', size);
     document.body.style.setProperty('--blending-value', blendingValue);
   }, []);
-
-  // useEffect(() => {
-  //   function move() {
-  //     if (!interactiveRef.current) {
-  //       return;
-  //     }
-  //     setCurX(curX + (tgX - curX) / 20);
-  //     setCurY(curY + (tgY - curY) / 20);
-  //     interactiveRef.current.style.transform = `translate(${Math.round(
-  //       curX
-  //     )}px, ${Math.round(curY)}px)`;
-  //   }
-
-  //   move();
-  // }, [tgX, tgY]);
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     if (interactiveRef.current) {

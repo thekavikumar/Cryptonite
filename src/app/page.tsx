@@ -1,4 +1,4 @@
-import { DataTableDemo } from '@/components/CoinTable';
+import { CoinTable } from '@/components/CoinTable';
 import { InfiniteMovingCards } from '@/components/infinite-moving-cards';
 import { GlobalMarketCapChart } from '@/components/MultiLineChart';
 import WatchList from '@/components/WatchList';
@@ -15,7 +15,7 @@ export default async function Home() {
           <InfiniteMovingCards />
         </div>
         <div className="">
-          <DataTableDemo page="home" />
+          <CoinTable page="home" />
         </div>
       </div>
     </main>

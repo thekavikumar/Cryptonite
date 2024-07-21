@@ -142,7 +142,7 @@ export const columns: ColumnDef<Coin>[] = [
   },
 ];
 
-export function DataTableDemo({ page }: { page: string }) {
+export function CoinTable({ page }: { page: string }) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
