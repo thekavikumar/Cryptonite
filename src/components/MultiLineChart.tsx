@@ -49,6 +49,7 @@ const formatLargeNumber = (num: any) => {
 export function GlobalMarketCapChart() {
   const [data, setData] = React.useState([]);
   const [loading, setLoading] = React.useState(true); // Loading state
+  const [error, setError] = React.useState(''); // Error state
   const [timeRange, setTimeRange] = React.useState('30d');
 
   const getTimeRange = () => {
@@ -65,6 +66,7 @@ export function GlobalMarketCapChart() {
   React.useEffect(() => {
     const fetchData = async () => {
       setLoading(true); // Set loading to true before fetching data
+      setError(''); // Reset error state before fetching data
       const [from, to] = getTimeRange();
 
       try {
@@ -95,10 +97,12 @@ export function GlobalMarketCapChart() {
         );
 
         setData(formattedData);
-        setLoading(false); // Set loading to false after fetching data
-      } catch (error) {
-        console.error(error);
-        setLoading(false); // Ensure loading is set to false on error too
+      } catch (error: any) {
+        if (error.response) {
+          setError('Too many requests, please try again later.');
+        }
+      } finally {
+        setLoading(false); // Set loading to false after fetching data or encountering an error
       }
     };
 
@@ -151,6 +155,10 @@ export function GlobalMarketCapChart() {
           <div className="flex flex-col text-center justify-center items-center ">
             <Loader2 size={20} className="animate-spin" />
             <p>Chart is getting loaded</p>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col text-center justify-center items-center">
+            <p>{error}</p>
           </div>
         ) : (
           <ChartContainer

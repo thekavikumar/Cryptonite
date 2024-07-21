@@ -12,9 +12,6 @@ export default async function Home() {
           <WatchList />
         </div>
         <div className="flex max-w-[320px] items-center lg:mx-auto lg:max-w-6xl flex-col justify-center gap-3 mt-14 lg:mt-9 mb-9">
-          <h1 className="text-center text-xl lg:text-2xl font-semibold">
-            Public Market Holdings
-          </h1>
           <InfiniteMovingCards />
         </div>
         <div className="">

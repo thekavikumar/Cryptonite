@@ -61,7 +61,7 @@ export const InfiniteMovingCards = ({
 
   useEffect(() => {
     updateHoldings();
-    const intervalId = setInterval(updateHoldings, 60000); // Refetch every 60 seconds
+    const intervalId = setInterval(updateHoldings, 30000); // Refetch every 60 seconds
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, []);
 
@@ -122,6 +122,13 @@ export const InfiniteMovingCards = ({
         className
       )}
     >
+      {holdings.length > 0 ? (
+        <h1 className="text-center text-xl lg:text-2xl font-semibold mb-2">
+          Public Market Holdings
+        </h1>
+      ) : (
+        <div className=""></div>
+      )}
       <ul
         ref={scrollerRef}
         className={cn(
