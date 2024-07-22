@@ -27,15 +27,21 @@ import {
 import { Loader2 } from 'lucide-react';
 
 const fetchCoinData = async (coin_id: string, days: string) => {
-  const response = await fetch(
-    `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/coins/${coin_id}/market_chart?vs_currency=usd&days=${days}`
-  );
+  const response = await fetch('/api/productChart', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ coin_id, days }),
+  });
+
   if (!response.ok) {
     if (response.status === 429) {
       throw new Error('Too Many Requests');
     }
     throw new Error('Failed to fetch coin data');
   }
+
   const data = await response.json();
   return data;
 };

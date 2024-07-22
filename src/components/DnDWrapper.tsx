@@ -9,19 +9,11 @@ const DnDWrapper = ({ children }: { children: React.ReactNode }) => {
 
   useEffect(() => {
     const fetchCoins = async () => {
-      const options = {
-        method: 'GET',
-        headers: {
-          accept: 'application/json',
-          'x-cg-demo-api-key': process.env.API_KEY ?? '', // replace with your actual API key if needed
-        },
-      };
-
       try {
-        const response = await fetch(
-          'https://api.coingecko.com/api/v3/search/trending',
-          options
-        );
+        const response = await fetch('/api/search');
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
         const data = await response.json();
         const transformedCoins = data.coins.map(
           (item: { item: Coin }) => item.item
@@ -35,10 +27,10 @@ const DnDWrapper = ({ children }: { children: React.ReactNode }) => {
 
     fetchCoins(); // Fetch data immediately on component mount
 
-    const intervalId = setInterval(fetchCoins, 30000); // Fetch data 30 sec
+    const intervalId = setInterval(fetchCoins, 30000); // Fetch data every 30 seconds
 
     return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, []);
+  }, []); // Empty dependency array means this effect runs once on mount
 
   return <DndProvider backend={HTML5Backend}>{children}</DndProvider>;
 };

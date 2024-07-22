@@ -71,37 +71,33 @@ export function GlobalMarketCapChart() {
       const [from, to] = getTimeRange();
 
       try {
-        const requests = cryptoIds.map((id) =>
-          axios.get(
-            `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
-            {
-              params: { vs_currency: 'usd', from, to },
-              headers: {
-                accept: 'application/json',
-                'x-cg-demo-api-key': process.env.API_KEY,
-              },
-            }
-          )
-        );
+        const response = await fetch('/api/marketData', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ from, to, ids: cryptoIds }),
+        });
 
-        const responses = await Promise.all(requests);
-        const formattedData = responses[0].data.market_caps.map(
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const [btcData, ethData] = await response.json();
+        const formattedData = btcData.market_caps.map(
           (_: any, index: number) => {
             return {
-              date: new Date(responses[0].data.market_caps[index][0])
+              date: new Date(btcData.market_caps[index][0])
                 .toISOString()
                 .split('T')[0],
-              btc: responses[0].data.market_caps[index][1],
-              eth: responses[1].data.market_caps[index][1],
+              btc: btcData.market_caps[index][1],
+              eth: ethData.market_caps[index][1],
             };
           }
         );
 
         setData(formattedData);
       } catch (error: any) {
-        if (error.response) {
-          setError('Too many requests, please try again later.');
-        }
+        setError('Too many requests, please try again later.');
       } finally {
         setLoading(false); // Set loading to false after fetching data or encountering an error
       }

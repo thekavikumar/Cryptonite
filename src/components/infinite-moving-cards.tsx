@@ -18,14 +18,19 @@ const ethereumImg =
   'https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628';
 
 const fetchCompanyHoldings = async (coin: string) => {
-  const response = await fetch(
-    `https://api.coingecko.com/api/v3/companies/public_treasury/${coin}`,
-    options
-  );
+  const response = await fetch('/api/publicTreasury', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ coin }),
+  });
+
   if (!response.ok) {
     throw new Error('Failed to fetch data');
   }
   const data = await response.json();
+  console.log('the data: ', data);
   return data.companies.map((company: any) => ({ ...company, coin }));
 };
 
