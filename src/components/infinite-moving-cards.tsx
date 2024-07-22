@@ -19,7 +19,7 @@ const ethereumImg =
 
 const fetchCompanyHoldings = async (coin: string) => {
   const response = await fetch(
-    `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/companies/public_treasury/${coin}`,
+    `https://api.coingecko.com/api/v3/companies/public_treasury/${coin}`,
     options
   );
   if (!response.ok) {
@@ -60,6 +60,7 @@ export const InfiniteMovingCards = ({
   };
 
   useEffect(() => {
+    console.log('public holding running');
     updateHoldings();
     const intervalId = setInterval(updateHoldings, 30000); // Refetch every 60 seconds
     return () => clearInterval(intervalId); // Cleanup on unmount

@@ -19,7 +19,7 @@ const DnDWrapper = ({ children }: { children: React.ReactNode }) => {
 
       try {
         const response = await fetch(
-          'https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/search/trending',
+          'https://api.coingecko.com/api/v3/search/trending',
           options
         );
         const data = await response.json();
@@ -38,7 +38,7 @@ const DnDWrapper = ({ children }: { children: React.ReactNode }) => {
     const intervalId = setInterval(fetchCoins, 30000); // Fetch data 30 sec
 
     return () => clearInterval(intervalId); // Cleanup on component unmount
-  }, [setCoins]);
+  }, []);
 
   return <DndProvider backend={HTML5Backend}>{children}</DndProvider>;
 };

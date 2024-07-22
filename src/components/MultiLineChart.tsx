@@ -52,18 +52,19 @@ export function GlobalMarketCapChart() {
   const [error, setError] = React.useState(''); // Error state
   const [timeRange, setTimeRange] = React.useState('30d');
 
-  const getTimeRange = () => {
-    const endTime = Math.floor(Date.now() / 1000);
-    const daysMap: any = {
-      '90d': [endTime - 90 * 24 * 3600, endTime],
-      '30d': [endTime - 30 * 24 * 3600, endTime],
-      '7d': [endTime - 7 * 24 * 3600, endTime],
-      '24h': [endTime - 24 * 3600, endTime], // Last 24 hours
-    };
-    return daysMap[timeRange];
-  };
-
   React.useEffect(() => {
+    console.log('Running the useEffect');
+    const getTimeRange = () => {
+      const endTime = Math.floor(Date.now() / 1000);
+      const daysMap: any = {
+        '90d': [endTime - 90 * 24 * 3600, endTime],
+        '30d': [endTime - 30 * 24 * 3600, endTime],
+        '7d': [endTime - 7 * 24 * 3600, endTime],
+        '24h': [endTime - 24 * 3600, endTime], // Last 24 hours
+      };
+      return daysMap[timeRange];
+    };
+
     const fetchData = async () => {
       setLoading(true); // Set loading to true before fetching data
       setError(''); // Reset error state before fetching data
@@ -72,7 +73,7 @@ export function GlobalMarketCapChart() {
       try {
         const requests = cryptoIds.map((id) =>
           axios.get(
-            `https://cors-anywhere.herokuapp.com/https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
+            `https://api.coingecko.com/api/v3/coins/${id}/market_chart/range`,
             {
               params: { vs_currency: 'usd', from, to },
               headers: {
