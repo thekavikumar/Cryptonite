@@ -177,7 +177,7 @@ export function CoinTable({ page }: { page: string }) {
   return (
     <div
       className={`w-full max-w-[340px] ${
-        page == 'trending' ? 'lg:max-w-3xl' : 'lg:max-w-6xl'
+        page == 'trending' ? 'md:max-w-3xl' : 'sm:max-w-4xl'
       } mx-auto`}
     >
       {page != 'trending' ? (
